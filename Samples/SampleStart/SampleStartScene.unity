@@ -509,7 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FPSText: {fileID: 746569582}
   FPSShowMode: 1
-  UpdateInterval: 0.5
+  UpdateInterval: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
