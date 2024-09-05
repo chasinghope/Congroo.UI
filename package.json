@@ -1,0 +1,11 @@
+{
+  "name": "congroo.framework.ui",
+  "displayName":  "Congroo UI",
+  "version": "0.0.1",
+  "description": "Congroo framework ui library.",
+  "keywords": [ "unity3d", "framework" ],
+  "category": "FRAMEWORK",
+  "dependencies": {
+	
+  }
+}
