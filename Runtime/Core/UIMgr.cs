@@ -11,7 +11,7 @@ using UIBaseTask = Cysharp.Threading.Tasks.UniTask<Congroo.UI.UIBase>;
 
 namespace Congroo.UI
 {
-    public class UIManager : MonoBehaviour
+    public class UIMgr : MonoBehaviour
     {
         private readonly Dictionary<Type, GameObject> mInstanceDict = new Dictionary<Type, GameObject>();
         private readonly Stack<(Type type, UIData data)> mPanleStack = new Stack<(Type type, UIData data)>();
@@ -118,7 +118,14 @@ namespace Congroo.UI
         /// </summary>
         public event Action<UIBase> OnDied;
         #endregion
-        
+
+        public static UIMgr Ins { get; private set; }
+
+        private void Awake()
+        {
+            if (Ins == null)
+                Ins = this;
+        }
         
         public void Initialize()
         {
@@ -199,6 +206,7 @@ namespace Congroo.UI
              UIBase uiBase = await ShowAsync(typeof(T), rData);
              return uiBase as T;
         }
+        
         
         public void Refresh<T>(UIData rData = null) where T : UIBase
         {
@@ -600,7 +608,6 @@ namespace Congroo.UI
         private async UniTask DoCreate(UIBase rUIBase)
         {
             OnCreate?.Invoke(rUIBase);
-            rUIBase.Status = UIStatus.Creating;
             await rUIBase.InnerOnCreate();
         }
         

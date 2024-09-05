@@ -20,7 +20,6 @@ namespace Congroo.UI
         /// 是否自动销毁
         /// </summary>
         public bool AutoDestroy = true;
-        public UIStatus Status = UIStatus.None;
         
         public UIData DataReference;
         

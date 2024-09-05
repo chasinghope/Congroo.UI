@@ -1,7 +1,8 @@
 {
-    "name": "congroo.ui",
+    "name": "congroo.ui.demo",
     "rootNamespace": "",
     "references": [
+        "congroo.ui",
         "UniTask"
     ],
     "includePlatforms": [],
@@ -11,12 +12,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.cysharp.unitask",
-            "expression": "2.5.5",
-            "define": "UNITASK"
-        }
-    ],
+    "versionDefines": [],
     "noEngineReferences": false
 }

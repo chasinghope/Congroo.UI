@@ -1,0 +1,54 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UI;
+using Congroo.UI;
+using Cysharp.Threading.Tasks;
+
+namespace Game.UI
+{
+    public class #SCRIPTNAME#Data : UIData
+    {
+    }
+
+    [UILayer(EUILayer.Panel)]
+    public class #SCRIPTNAME# : UIComponent<#SCRIPTNAME#Data>
+    {
+        #region UILifeCycle
+
+        protected override UniTask OnCreate()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        protected override UniTask OnRefresh()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        protected override void OnBind()
+        {
+
+        }
+
+        protected override void OnUnbind()
+        {
+        }
+
+        protected override void OnShow()
+        {
+        }
+
+        protected override void OnHide()
+        {
+        }
+
+        protected override void OnDied()
+        {
+        }
+
+        #endregion
+    }
+}
