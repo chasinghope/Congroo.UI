@@ -8,7 +8,7 @@
   "category": "UI",
   "dependencies": {
     "com.unity.ugui": "1.0.0",
-    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
+    "com.cysharp.unitask": "2.5.5"
     
   },
   "author": {

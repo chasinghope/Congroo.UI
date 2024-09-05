@@ -4,13 +4,23 @@
     "references": [
         "UniTask"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": ["com.cysharp.unitask"],
-    "versionDefines": [],
+    "defineConstraints": [
+        "ENABLE_UNITASK"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "2.5.5",
+            "define": "ENABLE_UNITASK"
+        }
+    ],
     "noEngineReferences": false
 }
