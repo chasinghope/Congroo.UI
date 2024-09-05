@@ -1,11 +1,19 @@
 {
-  "name": "congroo.framework.ui",
+  "name": "com.congroo.ui",
   "displayName":  "Congroo UI",
   "version": "0.0.1",
+  "unity": "2019.1",
   "description": "Congroo framework ui library.",
   "keywords": [ "unity3d", "framework" ],
-  "category": "FRAMEWORK",
+  "category": "UI",
   "dependencies": {
-	
+    "com.unity.ugui": "1.0.0",
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
+    
+  },
+  "author": {
+    "name": "Congroo",
+    "email": "bobjiang1045@163.com",
+    "url": "https://github.com/chasinghope/CongrooFrame.git"
   }
 }

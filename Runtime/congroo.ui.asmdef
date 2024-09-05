@@ -1,0 +1,16 @@
+{
+    "name": "congroo.ui",
+    "rootNamespace": "",
+    "references": [
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": ["com.cysharp.unitask"],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
