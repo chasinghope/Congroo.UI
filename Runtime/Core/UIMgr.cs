@@ -137,41 +137,14 @@ namespace Congroo.UI
             Stuck = mStuck;
             DontDestroyOnLoad(gameObject);
             
-            OnAssetRequest += Test_OnAssetRequestHandler;
-            OnAssetRelease += Test_OnAssetReleaseHandler;
-            OnCreate += UIMgrExpand.OnCreate;
-            OnBind += UIMgrExpand.OnBind;
-            OnUnbind += UIMgrExpand.OnUnBind;
+            // OnAssetRequest += Test_OnAssetRequestHandler;
+            // OnAssetRelease += Test_OnAssetReleaseHandler;
+            // OnCreate += UIMgrExpand.OnCreate;
+            // OnBind += UIMgrExpand.OnBind;
+            // OnUnbind += UIMgrExpand.OnUnBind;
         }
 
         
-        #region UI资源
-        
-        public Dictionary<Type, Object> mPrefabResDict = new ();
-        public const string UI_PATH = "UI/";
-        
-        private void Test_OnAssetReleaseHandler(Type rType)
-        {
-            if (mPrefabResDict.TryGetValue(rType, out Object res))
-            {
-                // Resources.UnloadAsset(res);
-                mPrefabResDict.Remove(rType);
-            }
-        }
-
-        private async GameObjectTask Test_OnAssetRequestHandler(Type rType)
-        {
-            string path = UI_PATH + rType.Name;
-            ResourceRequest request = Resources.LoadAsync<GameObject>(path);
-            var res = await request;
-            GameObject resPrefab = request.asset as GameObject;
-            mPrefabResDict[rType] = request.asset;
-            return resPrefab;
-        }
-        
-        #endregion
-
-
         #region 操作
 
         
@@ -327,8 +300,6 @@ namespace Congroo.UI
 
         
         #endregion
-
-
         
         private async UIBaseTask ShowAsync(Type rType, UIData rData = null)
         {

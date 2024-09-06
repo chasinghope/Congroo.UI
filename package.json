@@ -15,5 +15,14 @@
     "name": "Congroo",
     "email": "bobjiang1045@163.com",
     "url": "https://github.com/chasinghope/CongrooFrame.git"
-  }
+  },
+
+  "samples": [
+      {
+        "displayName": "Start Demo",
+        "description": "Demonstrate basic usage methods",
+        "path": "Samples~/SampleStart"
+      }
+    
+  ]
 }
