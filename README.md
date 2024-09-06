@@ -24,3 +24,17 @@ UniTask 2.5.5+
 1. 安全区
 
 https://github.com/doyasu24/SafeAreaRect.git
+
+
+
+
+
+推荐UI库：
+
+https://openupm.com/packages/com.coffee.ui-particle/
+
+https://openupm.com/packages/com.coffee.softmask-for-ugui
+
+https://openupm.com/packages/com.coffee.ui-effect/
+
+https://openupm.com/packages/com.unity.uiextensions
