@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace UnityEngine.UI
 {
+    [RequireComponent(typeof(CanvasRenderer))]
     public class EmptyGraphics : Graphic
     {
         protected override void UpdateMaterial()
