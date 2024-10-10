@@ -518,9 +518,9 @@ namespace Congroo.UI
             {
                 refInstance = await OnAssetRequest.Invoke(rType);
             }
-            if (refInstance == null) throw new Exception("资源加载失败");
+            if (refInstance == null) throw new Exception("资源加载失败 rType = " + rType.FullName);
             UIBase uibase = refInstance.GetComponent<UIBase>();
-            if (uibase == null) throw new Exception("预制体没有挂载继承自UIBase的脚本");
+            if (uibase == null) throw new Exception("预制体没有挂载继承自UIBase的脚本 refInstance = " + refInstance.name);
             instance = Instantiate(refInstance, rParent, rData);
             mInstanceDict[rType] = instance;
             return instance;
