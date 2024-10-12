@@ -113,10 +113,10 @@ Shader "UI/Color"
                 //HDR color transparency blend, when it blends with the world's texture.
                 half4 color =  (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);
 
-                // #ifdef UNITY_UI_CLIP_RECT
-                // half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(IN.mask.xy)) * IN.mask.zw);
-                // color.a *= m.x * m.y;
-                // #endif
+                #ifdef UNITY_UI_CLIP_RECT
+                half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(IN.mask.xy)) * IN.mask.zw);
+                color.a *= m.x * m.y;
+                #endif
                 //
                 // #ifdef UNITY_UI_ALPHACLIP
                 // clip (color.a - 0.001);
