@@ -443,6 +443,10 @@ namespace Congroo.UI
                 if (curPanel.AutoDestroy || rForceDestroy) ReleaseInstance(curPanel.GetType());
                 instance.SetActive(true);
                 instance.transform.SetAsLastSibling();
+                if (newPanel.AutoDestroy)
+                {
+                    await DoCreate(newPanel);
+                }
                 DoBind(newPanel);
                 DoShow(newPanel);
             }
