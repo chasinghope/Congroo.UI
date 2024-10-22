@@ -527,7 +527,7 @@ namespace Congroo.UI
             if (uibase == null) throw new Exception("预制体没有挂载继承自UIBase的脚本 refInstance = " + refInstance.name);
             instance = Instantiate(refInstance, rParent, rData);
             mInstanceDict[rType] = instance;
-            TrySetData(uibase, rData);
+            TrySetData(instance.GetComponent<UIBase>(), rData);
             await DoCreate(uibase);
             return instance;
         }
