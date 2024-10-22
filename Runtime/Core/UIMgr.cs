@@ -338,7 +338,7 @@ namespace Congroo.UI
 
                     GameObject instance = await RequestInstance(rType, rData, mPanelLayer);
                     UIBase uiBase = instance.GetComponent<UIBase>();
-                    await DoCreate(uiBase);
+                    // await DoCreate(uiBase);
                     
                     if (rData != null && curPanel != null)
                     {
@@ -348,6 +348,7 @@ namespace Congroo.UI
                     if (curPanel != null)
                     {
                         DoHide(curPanel);
+                        
                         curPanel.gameObject.SetActive(false);
                         if (curPanel.AutoDestroy)
                             ReleaseInstance(curPanel.GetType());
@@ -374,7 +375,6 @@ namespace Congroo.UI
 
                     if (!uiBase.gameObject.activeInHierarchy)
                     {
-                        await DoCreate(uiBase);
                         await DoRefresh(uiBase);
                         instance.SetActive(true);
                         instance.transform.SetAsLastSibling();
@@ -443,10 +443,10 @@ namespace Congroo.UI
                 if (curPanel.AutoDestroy || rForceDestroy) ReleaseInstance(curPanel.GetType());
                 instance.SetActive(true);
                 instance.transform.SetAsLastSibling();
-                if (newPanel.AutoDestroy)
-                {
-                    await DoCreate(newPanel);
-                }
+                // if (newPanel.AutoDestroy)
+                // {
+                //     await DoCreate(newPanel);
+                // }
                 DoBind(newPanel);
                 DoShow(newPanel);
             }
@@ -527,6 +527,8 @@ namespace Congroo.UI
             if (uibase == null) throw new Exception("预制体没有挂载继承自UIBase的脚本 refInstance = " + refInstance.name);
             instance = Instantiate(refInstance, rParent, rData);
             mInstanceDict[rType] = instance;
+            TrySetData(uibase, rData);
+            await DoCreate(uibase);
             return instance;
         }
         
@@ -536,8 +538,6 @@ namespace Congroo.UI
             prefab.SetActive(false);
             GameObject instance = GameObject.Instantiate(prefab, parent);
             prefab.SetActive(refActiveSelf);
-            UIBase uibase = instance.GetComponent<UIBase>();
-            TrySetData(uibase, data);
             return instance;
         }
 
