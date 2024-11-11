@@ -338,7 +338,6 @@ namespace Congroo.UI
 
                     GameObject instance = await RequestInstance(rType, rData, mPanelLayer);
                     UIBase uiBase = instance.GetComponent<UIBase>();
-                    // await DoCreate(uiBase);
                     
                     if (rData != null && curPanel != null)
                     {
@@ -443,10 +442,6 @@ namespace Congroo.UI
                 if (curPanel.AutoDestroy || rForceDestroy) ReleaseInstance(curPanel.GetType());
                 instance.SetActive(true);
                 instance.transform.SetAsLastSibling();
-                // if (newPanel.AutoDestroy)
-                // {
-                //     await DoCreate(newPanel);
-                // }
                 DoBind(newPanel);
                 DoShow(newPanel);
             }
@@ -523,11 +518,12 @@ namespace Congroo.UI
                 refInstance = await OnAssetRequest.Invoke(rType);
             }
             if (refInstance == null) throw new Exception("资源加载失败 rType = " + rType.FullName);
-            UIBase uibase = refInstance.GetComponent<UIBase>();
-            if (uibase == null) throw new Exception("预制体没有挂载继承自UIBase的脚本 refInstance = " + refInstance.name);
+            UIBase prefabuibase = refInstance.GetComponent<UIBase>();
+            if (prefabuibase == null) throw new Exception("预制体没有挂载继承自UIBase的脚本 refInstance = " + refInstance.name);
             instance = Instantiate(refInstance, rParent, rData);
             mInstanceDict[rType] = instance;
-            TrySetData(instance.GetComponent<UIBase>(), rData);
+            UIBase uibase = instance.GetComponent<UIBase>();
+            TrySetData(uibase, rData);
             await DoCreate(uibase);
             return instance;
         }
