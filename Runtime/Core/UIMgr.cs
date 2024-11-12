@@ -201,7 +201,7 @@ namespace Congroo.UI
                 if (!ui.gameObject.activeInHierarchy) 
                     return;
                 
-                if (rData != null) TrySetData(ui, rData);
+                TrySetData(ui, rData);
                 await DoRefresh(ui);
             }
         }
@@ -306,7 +306,7 @@ namespace Congroo.UI
             UILayerAttribute uiLayerAttribute = GetLayer(rType);
             if (uiLayerAttribute == null)
             {
-                throw new Exception("UIManager Error: 类型没有设置UILayer属性");
+                throw new Exception($"UIManager Error: 类型没有设置UILayer属性 : {rType.Name}");
             }
 
             try
@@ -326,7 +326,7 @@ namespace Congroo.UI
                     UIBase curPanel = CurrentPanel;
                     if (curPanel != null && rType == curPanel.GetType())
                     {
-                        Debug.LogWarning("UIManager Warning: 重复打开同类型UI");
+                        Debug.LogWarning($"UIManager Warning: 重复打开同类型UI : {rType.Name}");
                         return curPanel;
                     }
 
@@ -382,7 +382,7 @@ namespace Congroo.UI
                     }
                     else
                     {
-                        Debug.LogWarning("UIManager Warning: 重复打开同类型UI");
+                        Debug.LogWarning($"UIManager Warning: 重复打开同类型UI : {rType.Name}");
                     }
 
                     result = uiBase;
@@ -420,7 +420,7 @@ namespace Congroo.UI
             if (curPanel == null)
             {
                 timeoutCts.Cancel();
-                Debug.LogWarning("UIManager Warning: 当前没有打开的面板");
+                Debug.LogWarning($"UIManager Warning: 当前没有打开的面板 ");
                 return;
             }
 
@@ -463,7 +463,7 @@ namespace Congroo.UI
             UILayerAttribute uiLayerAttribute = GetLayer(rType);
             if (uiLayerAttribute == null)
             {
-                throw new Exception("UIManager Error: 类型没有设置UILayer属性");
+                throw new Exception($"UIManager Error: 类型没有设置UILayer属性 : {rType.Name}");
             }
 
             try
@@ -493,7 +493,7 @@ namespace Congroo.UI
                     }
                     else
                     {
-                        Debug.LogWarning("UIManager Warning: 当前没有打开的弹窗");
+                        Debug.LogWarning($"UIManager Warning: 当前没有打开的弹窗: {rType.Name}");
                     }
                 }
             }
