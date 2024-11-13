@@ -394,6 +394,7 @@ namespace Congroo.UI
                     OnStuckEnd?.Invoke();
                 }
 
+                Debug.LogWarning($"打开界面: {rType.Name}");
                 return result;
             }
             catch (Exception ex)
