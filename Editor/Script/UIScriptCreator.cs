@@ -63,7 +63,11 @@ namespace Game.UI
         #endregion
     }
 }
-"); }
+"); 
+            
+
+
+        }
         
         public static void DoCreate(string template)
         {
@@ -74,10 +78,19 @@ namespace Game.UI
                 {
                     string currentDir = ReflactionUtils.RunClassFunc<string>(typeof(ProjectWindowUtil), "GetActiveFolderPath");
                     var result = AddCodeSnippetToTemplate(template, prefab.name);
-                    File.WriteAllText(Path.Combine(Application.dataPath, "..", currentDir, $"{prefab.name}.cs"), result);
+                    string scriptPath = Path.Combine(Application.dataPath, "..", currentDir, $"{prefab.name}.cs");
+                    File.WriteAllText(scriptPath, result);
                     AssetDatabase.Refresh();
+                    EditorApplication.delayCall += () => AttachScriptToPrefab(prefab);
                 }
             }
+        }
+
+        private static void DelayedAttachScriptToPrefab()
+        {
+            // 脚本已经编译完成，执行挂载操作
+            AttachScriptToPrefab(Selection.activeGameObject);
+            EditorApplication.update -= DelayedAttachScriptToPrefab;
         }
         
         public static string AddCodeSnippetToTemplate(string template, string fileName)
@@ -87,6 +100,26 @@ namespace Game.UI
             script = Regex.Replace(script, @"^ +\n", "\n", RegexOptions.Multiline);
             script = Regex.Replace(script, @"^ +\r\n", "\r\n", RegexOptions.Multiline);
             return script;
+        }
+
+
+        public static void AttachScriptToPrefab(GameObject prefabObject)
+        {
+            Debug.Log("AttachScriptToPrefab.");
+
+            // 创建脚本实例并挂载到预制体上
+            System.Type type = System.Type.GetType($"Game.UI.{prefabObject.name}");
+            if (type == null)
+            {
+                Debug.Log($"预制体, 挂载空脚本.");
+                return;
+            }
+            
+            prefabObject.AddComponent(type);
+
+            // 保存预制体并关闭预制体内容
+            PrefabUtility.SaveAsPrefabAsset(prefabObject, AssetDatabase.GetAssetPath(prefabObject));
+            PrefabUtility.UnloadPrefabContents(prefabObject);
         }
     }
 }

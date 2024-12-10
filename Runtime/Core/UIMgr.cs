@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Object = UnityEngine.Object;
 using GameObjectTask = Cysharp.Threading.Tasks.UniTask<UnityEngine.GameObject>;
 using UIBaseTask = Cysharp.Threading.Tasks.UniTask<Congroo.UI.UIBase>;
 
@@ -14,7 +13,7 @@ namespace Congroo.UI
     public class UIMgr : MonoBehaviour
     {
         private readonly Dictionary<Type, GameObject> mInstanceDict = new Dictionary<Type, GameObject>();
-        private readonly Stack<(Type type, UIData data)> mPanleStack = new Stack<(Type type, UIData data)>();
+        private readonly UIStack<(Type type, UIData data)> mPanleStack = new UIStack<(Type type, UIData data)>();
         private readonly Dictionary<Type, UILayerAttribute> mTypeLayerDict = new Dictionary<Type, UILayerAttribute>();
         
         
@@ -285,6 +284,17 @@ namespace Congroo.UI
         public bool IsOpened<T>() where T : UIBase
         {
             return IsOpened(typeof(T));
+        }
+
+
+        public void RemovePanel<T>()
+        {
+            Type type = typeof(T);
+            int index = mPanleStack.FindLastIndex((t) => t.type == type);
+            if (index != -1)
+            {
+                mPanleStack.RemoveIndex(index);
+            }
         }
         
         private bool IsOpened(Type rType)
