@@ -230,9 +230,9 @@ namespace Congroo.UI
             await HideAsync(typeof(T), rForceDestroy);
         }
 
-        public void Back()
+        public void Back(bool rForceDestroy = false)
         {
-            BackAsync().Forget();
+            BackAsync(rForceDestroy).Forget();
         }
         
         
