@@ -1,12 +1,13 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Congroo.UI
 {
     
 
-    public class UIStack<T>
+    public class UIStack<T> :IEnumerable<T>
     {
         private List<T> items = new List<T>();
 
@@ -40,6 +41,12 @@ namespace Congroo.UI
             return items[items.Count - 1];
         }
 
+
+        public void Insert(int index, T item)
+        {
+            items.Insert(index, item);
+        }
+
         // IsEmpty 方法用于检查栈是否为空
         public bool IsEmpty()
         {
@@ -71,6 +78,19 @@ namespace Congroo.UI
         public T GetIndex(int index)
         {
             return items[index];
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                yield return items[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 

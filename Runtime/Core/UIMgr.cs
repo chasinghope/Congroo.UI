@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -296,6 +297,11 @@ namespace Congroo.UI
                 mPanleStack.RemoveIndex(index);
             }
         }
+
+        public void InsertPanel(int rIndex, Type rUIBaseType, UIData rUIData)
+        {
+            mPanleStack.Insert(rIndex, (rUIBaseType, rUIData));
+        }      
         
         private bool IsOpened(Type rType)
         {
@@ -455,6 +461,7 @@ namespace Congroo.UI
                 instance.transform.SetAsLastSibling();
                 DoBind(newPanel);
                 DoShow(newPanel);
+                Debug.LogWarning($"返回到界面: {prePanelType.Name}");
             }
             else
             {
@@ -636,6 +643,25 @@ namespace Congroo.UI
             OnDied?.Invoke(uiBase);
             uiBase.InnerOnDied();
             GameObject.Destroy(instance);
+        }
+        
+        #endregion
+        
+        
+        
+        #region Debug
+
+        public void Test_PrintUIStack()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UIStack: Root");
+            foreach (var item in mPanleStack)
+            {
+                sb.Append("->");
+                sb.Append(item.type.Name);
+
+            }
+            Debug.Log(sb.ToString());
         }
         
         #endregion
